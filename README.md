@@ -11,6 +11,7 @@ N/A
 ## Usage
 
 To begin the game, click on the start button. The timer will begin and the first question will appear on the screen with 4 answer choices. Each incorrect answer deducts time and each correct answer will move the user to the next question. After 10 questions the ending screen will be prompted to appear, showing the user's score and prompting them to either end or restart the quiz. When clicked, a button on the top left of the screen will display the user's current top score. Note: This is currently still a work in progress.
+https://kiman21.github.io/quiz-game/
 
 ## Credits
 N/A
