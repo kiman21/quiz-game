@@ -10,30 +10,28 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Document</title>
 </head>
-<body class = "w-100 h-100">
+<div class = "w-100 h-100">
     <header>
         <!-- Button to view High Score saved on local storage -->
-        <button class = "d-flex justify-content-start">View High Score</button>
+        <button class = "d-flex justify-content-start" id = "result-button">View Score</button>
         <!-- Quiz timer -->
-        <div class = "timer d-flex justify-content-end"></div>
+        <div class = "timer d-flex justify-content-end">60</div>
     </header>
     <!-- Container for quiz starting screen -->
     <div class = "container d-flex justify-content-center align-items-center">
         <h1>Animal Quiz</h1>
         <!-- Clicking this button starts the timer and the quiz -->
-        <button>Start Quiz</button>
+        <button id = "start-button">Start Quiz</button>
     </div>
     <!-- Contains question box that user interacts with during quiz -->
-    <div class = "question-box">
-        <h2 class = question1></h2>
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
+    <div class="questionContainer d-flex justify-content-center">
+        <div class="d-block w-50 border border-success" id = "question-box">
+            <h2 id = "question-name"></h2>
+            <ul class="" id = "option-choice">
+            </ul>
+        </div>
     </div>
-
+   
     <!-- Link to js script -->
     <script src="./assets/js/script.js"></script>
 </body>
