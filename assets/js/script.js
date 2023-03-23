@@ -3,7 +3,7 @@ var questions = [
     {
         numb: 1,
         question: "Which of the following animals is a reptile?",
-        answer: "Turle",
+        answer: "Turtle",
         options: [
           "Frog",
           "Salamander",
@@ -21,7 +21,7 @@ var questions = [
           "Arctic Fox",
           "Squirrel"
         ]
-     },
+    },
     {
         numb: 3,
         question: "Which of the following birds cannot fly?",
@@ -109,32 +109,84 @@ var questions = [
           "Wombat",
           "Weasel"
         ]
-    }
-    ];
-    // Starting value for game timer.
-var secondsLeft = 60;
-var startButton =
-var answerButton =
-var endButton =
-var restartButton =
-var score = localStorage.getItem("score");
-function setTime() {
-    // Sets interval in variable
-    var timerInterval = setInterval(function() {
-      secondsLeft--;
-      
-      if(secondsLeft === 0) {
-        // When the timer hits 0 the end game screen is prompted
-
-  
-    }, 1000);
+    },
+    {
+      numb: 11,
+      question: "Congrats you've reached the end!",
+      answer: "Click to end, then click View Score",
+      options: [
+        "Click to end, then click View Score",
+        ]
   }
-  
-startButton.addEventListener("click", function() {}
-//   Hides starting screen and begins quiz and timer
-answerButton.addEventListener("click", function() {}
-//   If answer does not match the correct answer (!==), deduct 10 seconds and prompt text "incorrect answer". Else continue to next question and update score
-endButton.addEventListener("click", function() {}
+    ];
+
+let secondsLeft = 60;
+let score = 0;
+let scorelist = "";
+var startButton = document.querySelector("#start-button");
+var resultButton = document.querySelector("#result-button");
+var questionContainer = document.querySelector(".questionContainer")
+var questionName = document.querySelector("#question-name");
+var optionList = document.querySelector("#option-choice");
+var timer = document.querySelector(".timer")
+var currentQuestion = 0
+
+startButton.addEventListener("click", function() {
+  console.log("hello")
+  questionGen();
+  startButton.style.display = "none";
+  setInterval(function() {
+    if(secondsLeft > 0) {
+      secondsLeft--;
+    }
+    timer.textContent = secondsLeft
+    if (secondsLeft <= 0) {
+      clearInterval(setInterval);
+      questionContainer.style.display = "none";
+      timer.style.display = "none";
+      showResult();
+    }
+  }, 1000);
+});
+function questionGen() {
+optionList.innerHTML = "";
+questionName.textContent = questions[currentQuestion].question;
+for (var i = 0; i < questions[currentQuestion].options.length; i++) {
+var thisChoice = document.createElement("li");
+var thisButton = document.createElement("button");
+thisButton.textContent = questions[currentQuestion].options[i];
+thisChoice.appendChild(thisButton);
+optionList.appendChild(thisChoice);
+thisButton.addEventListener("click", checkAnswer);
+}}
+
+function checkAnswer(event) {
+console.log(event.target.textContent);
+if (event.target.textContent == questions[currentQuestion].answer) {
+  score++;
+  currentQuestion++
+} else {
+  secondsLeft-=5;
+}
+sessionStorage.setItem('score', score);
+questionGen();
+if (event.target.textContent=="Click to end, then click View Score") {
+  score--;
+questionContainer.style.display = "none";
+timer.style.display = "none"; 
+showResult();
+}
+}
+
 // sends user ending message
-restartButton.addEventListener("click", function() {}
-// sends user back to starting page
+function showResult() {
+  startButton.style.display = "none";
+  quizContainer.style.display = "none";
+}
+
+resultButton.addEventListener("click", function() {
+  var currentScore=parseInt(sessionStorage.getItem('score'))-1;
+  var finalScore=currentScore.toString() + " out of 10";
+  alert(finalScore);
+});
+
